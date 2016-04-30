@@ -8,30 +8,44 @@
     <link rel="stylesheet" href="css/foundation.css">
     <link rel="stylesheet" href="css/app.css">
     <link type="text/css" rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" />
-    <script src="js/vendor/modernizr.js"></script>
-    <script src="js/vendor/jquery.js"></script>
-    <script src="js/vendor/foundation.js"></script>
-    <script src="js/vendor/foundation.dropdown.js"></script>
-    <script src="js/vendor/foundation.topbar.js"></script>
   </head>
   
   <body>
+    <div class="fixed">
+      <nav class="top-bar" data-topbar role="navigation">
+        <ul class="title-area">
+          <li class="name">
+            <h1><a href="#">My Site</a></h1>
+          </li>
+           <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+          <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+        </ul>
+
+        <section class="top-bar-section">
+          <!-- Right Nav Section -->
+          <ul class="right">
+            <li class="active"><a href="#">Right Button Active</a></li>
+            <li class="has-dropdown">
+              <a href="#">Right Button Dropdown</a>
+              <ul class="dropdown">
+                <li><a href="#">First link in dropdown</a></li>
+                <li class="active"><a href="#">Active link in dropdown</a></li>
+              </ul>
+            </li>
+          </ul>
+
+          <!-- Left Nav Section -->
+          <ul class="left">
+            <li><a href="#">Left Nav Button</a></li>
+          </ul>
+        </section>
+      </nav>
+    </div>
     <div class="row">
-      <div class="large-6 columns">
+      <div class="large-4 columns">
         <h1>Startup search</h1>
       </div>
-      <div  class="large-6 columns">
-        <a data-dropdown="drop1" aria-controls="drop1" aria-expanded="false">Has Dropdown</a>
-        <ul id="drop1" class="f-dropdown" data-dropdown-content aria-hidden="true" tabindex="-1">
-          <li><a href="#">This is a link</a></li>
-          <li><a href="#">This is another</a></li>
-          <li><a href="#">Yet another</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="large-10 large-offset-2 columns">
+      <div class="large-4 large-offset-1 columns">
         <form>
           <div class="row collapse">
             <div class="large-8 columns">
@@ -44,6 +58,18 @@
         </form>
       </div>
     </div>
+
+    <div class="row">
+      <div class="large-2 columns">
+        <h3>Categories</h3>
+
+      </div>
+      
+    </div>
+
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/vendor/what-input.js"></script>
+    <script src="js/vendor/foundation.js"></script>
     <script src="js/app.js"></script>
     <script>
       $(document).foundation();
