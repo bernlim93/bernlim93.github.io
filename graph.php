@@ -1,8 +1,8 @@
 <?php
-    $username = "waterbas_main"; 
+    $username = "waterbas_nit"; 
     $password = "smitak123";   
     $host = "waterbase.web.engr.illinois.edu";
-    $database="waterbas_main";
+    $database="waterbas_nit";
     
     $server = mysql_connect($host, $username, $password);
     $connection = mysql_select_db($database, $server);
