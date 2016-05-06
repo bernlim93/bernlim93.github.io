@@ -1,13 +1,13 @@
 <?php
-    $username = "waterbas_nit"; 
-    $password = "smitak123";   
-    $host = "waterbase.web.engr.illinois.edu";
-    $database="waterbas_nit";
+    $username = "bnt"; 
+    $password = "cs410project";   
+    $host = "cs410project.cukigpbmy72c.us-west-2.rds.amazonaws.com";
+    $database="cs410project";
     
     $server = mysql_connect($host, $username, $password);
     $connection = mysql_select_db($database, $server);
 
-    $myquery = "SELECT  `sentiment`, `ts` FROM  `Messages`";
+    $myquery = "SELECT  * FROM  `cs410`";
     $query = mysql_query($myquery);
     
     if ( ! $query ) {
@@ -24,4 +24,6 @@
     echo json_encode($data);     
      
     mysql_close($server);
+
 ?>
+
