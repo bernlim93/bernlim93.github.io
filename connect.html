@@ -3,32 +3,33 @@
 <body>
     Hi
 <?php
-$servername = "localhost";
-$username = "username";
-$password = "password";
-$dbname = "myDB";
+    $username = "bnt"; 
+    $password = "cs410project";   
+    $host = "cs410project.cukigpbmy72c.us-west-2.rds.amazonaws.com";
+    $database="cs410project";
+    
+    $server = mysql_connect($host, $username, $password);
+    $connection = mysql_select_db($database);
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-     die("Connection failed: " . $conn->connect_error);
-} 
+    $myquery = "SELECT * FROM  `cs410`";
+    $query = mysql_query($myquery);
+    
+    if ( ! $query ) {
+        echo mysql_error();
+        die;
+    }
+    
+    $data = array();
+    
+    for ($x = 0; $x < mysql_num_rows($query); $x++) {
+        $data[] = mysql_fetch_assoc($query);
+    }
+    
+    var_dump($data);     
+     
+    mysql_close($server);
 
-$sql = "SELECT id, firstname, lastname FROM MyGuests";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-     // output data of each row
-     while($row = $result->fetch_assoc()) {
-         echo "<br> id: ". $row["id"]. " - Name: ". $row["firstname"]. " " . $row["lastname"] . "<br>";
-     }
-} else {
-     echo "0 results";
-}
-
-$conn->close();
-?>  
+?>
 
 
 </body>
