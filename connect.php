@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html>
+<body>
 <?php
     $username = "bnt"; 
     $password = "cs410project";   
@@ -27,3 +30,6 @@
 
 ?>
 
+
+</body>
+</html>
