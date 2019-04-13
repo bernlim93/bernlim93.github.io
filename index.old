@@ -1,0 +1,118 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Startup Search</title>
+    <link rel="stylesheet" href="css/foundation.css" />
+    <link type="text/css" rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" />
+    <script src="js/vendor/modernizr.js"></script>
+    <script src="//d3js.org/d3.v3.min.js"></script>
+  </head>
+  
+  <body>
+    <div class="fixed">
+      <h1>Startup search</h1>
+      <nav class="top-bar" data-topbar role="navigation">
+
+        <section class="top-bar-section">
+          <!-- Left Nav Section -->
+          <ul class="left">
+            <li class="has-dropdown">
+              <a href="#">Categories</a>
+              <ul class="dropdown">
+                <li><a href="#">First link in dropdown</a></li>
+                <li class="active"><a href="#">Active link in dropdown</a></li>
+              </ul>
+            </li>
+          </ul>
+          <!-- Right Nav Section -->
+          <ul class="right">
+            <ul class="menu">
+              <li><input type="search" placeholder="Search"></li>
+              <li><button type="button" class="button"><i class="fi-magnifying-glass"></i></li>
+            </ul>
+          </ul>
+
+        </section>
+      </nav>
+    </div>
+
+    <div class="row">
+      <h1>List of Companies</h1>
+      <script>
+
+        // Custom GET & POST wrappers:
+        $.tzPOST = function(action,data,callback){
+          $.post('php/ajax.php?action='+action,data,callback,'json');
+        }
+
+        $.tzGET = function(action,data,callback){
+          $.get('php/ajax.php?action='+action,data,callback,'json');
+        }
+
+        var margin = {top: 30, right: 20, bottom: 30, left: 50},
+            width = 1200 - margin.left - margin.right,
+            height = 500 - margin.top - margin.bottom;
+
+        //var parseDate = d3.time.format("%x-%X").parse;
+
+        var x = d3.time.scale().range([0, width]);
+        var y = d3.scale.linear().range([height, -1]);
+
+        var xAxis = d3.svg.axis().scale(x)
+            .orient("bottom").ticks(5);
+
+        var yAxis = d3.svg.axis().scale(y)
+            .orient("left").ticks(5);
+
+        var valueline = d3.svg.line()
+            .x(function(d) { return x(d.ts); })
+            .y(function(d) { return y(d.sentiment); })
+            .interpolate("linear");
+            
+        var svg = d3.select("body")
+            .append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        // Get the data
+
+        $.tzPOST('getChatHistory', function(data) {
+          console.log(data);
+            data.forEach(function(d) {
+                d.ts = Date.parse(d.ts);
+                d.sentiment = +d.sentiment;
+            });
+            
+            // Scale the range of the data
+            x.domain(d3.extent(data, function(d) { return d.ts; }));
+            y.domain([d3.min(data, function(d) { return d.sentiment; }) - 0.5, d3.max(data, function(d) { return d.sentiment; }) + 0.5]);
+
+            svg.append("path")      // Add the valueline path.
+                .attr("class", "line")
+                .attr("d", valueline(data))
+                .attr("stroke", "blue")
+                .attr("fill", "none");
+
+            svg.append("g")         // Add the X Axis
+                .attr("class", "x axis")
+                .attr("transform", "translate(0," + height + ")")
+                .call(xAxis);
+
+            svg.append("g")         // Add the Y Axis
+                .attr("class", "y axis")
+                .call(yAxis);
+        });
+      </script>
+    </div>
+
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>
