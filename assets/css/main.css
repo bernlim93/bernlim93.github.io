@@ -1706,6 +1706,8 @@ input, select, textarea {
 			opacity: 0;
 		}
 
-		body.grid-container {
-			display: grid;
-		  }
+.grid-container {
+    display: grid;
+  	grid-template-columns: repeat(2, 1fr);
+  	gap: 10px;
+}
