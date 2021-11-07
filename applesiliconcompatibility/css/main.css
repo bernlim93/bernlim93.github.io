@@ -20,13 +20,13 @@
 }
 
 body, html {
-	height: 100%;
   font-family: sans-serif;
   background: #c850c0;
   background: -webkit-linear-gradient(45deg, #4158d0, #c850c0);
   background: -o-linear-gradient(45deg, #4158d0, #c850c0);
   background: -moz-linear-gradient(45deg, #4158d0, #c850c0);
   background: linear-gradient(45deg, #4158d0, #c850c0);
+  background-size: auto;
 }
 
 /* ------------------------------------ */
@@ -36,6 +36,7 @@ a {
 	-webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
   -moz-transition: all 0.4s;
+  color: rgb(0, 70, 128);
 }
 
 a:focus {
