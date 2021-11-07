@@ -48,7 +48,7 @@ a:hover {
 
 /* ------------------------------------ */
 h1 {
-  font-size:5vmin;
+  font-size:5.5vmin;
   color: rgba(24, 24, 24, 0.842);
 }
 
@@ -58,7 +58,7 @@ h1,h2,h3,h4,h5,h6 {
 
 p {
   margin: 0px;
-  font-size:2vmin;
+  font-size:2vh;
 }
 
 ul, li {
